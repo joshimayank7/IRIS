@@ -92,7 +92,7 @@ plt.subplot(2,2,4)
 sns.violinplot(x='species',y='sepal_width',data=iris)
 plt.show()
 
-## modelling 
+## Modelling 
 
 ##Split the training and test dataset
 
@@ -103,22 +103,6 @@ print(X.shape)
 # print(y.head())
 print(y.shape)
 
-#Advantages
-#By splitting the dataset pseudo-randomly into a two separate sets, 
-#we can train using one set and test using another.
-#This ensures that we won't use the same observations in both sets. 
-#More flexible and faster than creating a model using all of the dataset for training.
-#Disadvantages
-#The accuracy scores for the testing set can vary depending on what observations are in the set.
-#This disadvantage can be countered using k-fold cross-validation.
-#Notes
-#The accuracy score of the models depends on the observations in the testing set,
-# which is determined by the seed of the pseudo-random number generator (random_state parameter).
-#As a model's complexity increases, the training accuracy (accuracy you get when you train and test 
-#the model on the same data) increases.
-#If a model is too complex or not complex enough, the testing accuracy is lower.
-#For KNN models, the value of k determines the level of complexity. A lower value of k means that 
-#the model is more complex.
 
 from sklearn.model_selection import train_test_split  #to split the dataset for training and testing
 
@@ -163,48 +147,9 @@ def model_performance(actual,predicted):
     print ('Report : ')
     print (classification_report(actual, predicted) )
 
-##Logistic Regression
-#
-#logr = LogisticRegression()
-#logr.fit(X_train,y_train)
-#y_pred = logr.predict(X_test)
-#model_performance(y_test,y_pred)
-#print('___________________________________________')
-#print('                                           ')
-###-----------------------------------------------------------------
-###Decision Tree
-#dt = DecisionTreeClassifier()
-#dt.fit(X_train,y_train)
-#y_pred = dt.predict(X_test)
-## how did our model perform?
-#model_performance(y_test,y_pred)
-#print('___________________________________________')
-#print('                                           ')
-#
-#
-###------------------------------------------------------------------
-###Support Vector Machine
-#sv = svm.SVC() #select the algorithm
-#sv.fit(X_train,y_train) # we train the algorithm with the training data and the training output
-#y_pred = sv.predict(X_test) #now we pass the testing data to the trained algorithm
-#
-## how did our model perform?
-#model_performance(y_test,y_pred)
-#print('___________________________________________')
-#print('                                           ')
-###-----------------------------------------------------------------
-###KNN
-#knc = KNeighborsClassifier(n_neighbors= 3) 
-##this examines 3 neighbours for putting the new data into a class
-#knc.fit(X_train,y_train)
-#y_pred = knc.predict(X_test)
-#
-## how did our model perform?
-#model_performance(y_test,y_pred)
-#print('___________________________________________')
-#print('                                           ')
 
 #Let's check the accuracy for various values of n for K-Nearest nerighbours
+##KNN
 a_index = list(range(1,11))
 a = pd.Series()
 x = [1,2,3,4,5,6,7,8,9,10]
@@ -219,14 +164,6 @@ for i in list(range(1,11)):
 plt.plot(a_index, a)
 plt.xticks(x)
 plt.show()
-
-## consolidating accuracy scores
-#models = pd.DataFrame({
-#    'Model': ['Logistic Regression', 'Decision Tree', 'Support Vector Machines',
-#              'K-Nearest Neighbours'],
-#    'Score': [acc_log, acc_dt, acc_svm, acc_knn]})
-#models.sort_values(by='Score', ascending=False)
-
 
 ##-----------------
 models = pd.DataFrame(columns=['Model_name','Model', 'Accuracy_Score'])
